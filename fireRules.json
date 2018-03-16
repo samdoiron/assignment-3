@@ -2,13 +2,22 @@
   "rules": {
     ".read": "true",
     ".write": "true",
-    "contacts": {
-            "$contact": {
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length < 50"
+    "businesses": {
+            "$business": {
+                "number": {
+                    ".validate": "newData.isString() && newData.val().length == 9 && newData.val().matches(/[0-9]+/)"
                 },
-                "email": {
-                    ".validate": "newData.isString() && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
+                "name": {
+                  ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 48"
+                },
+                "primaryBusiness": {
+                  ".validate": "newData.val() == 'Fisher' || newData.val() == 'Distributor' || newData.val() == 'Processor' || newData.val() == 'Fish Monger'"
+                },
+                "address": {
+                  ".validate": "newData.val().length < 50"
+                },
+                "provinceOrTerritory": {
+                  ".validate": "newData.val() == 'BC' || newData.val() == 'MB' || newData.val() == 'NB' || newData.val() == 'NL' || newData.val() == 'NS' || newData.val() == 'NT' || newData.val() == 'NU' || newData.val() == 'ON' || newData.val() == 'PE' || newData.val() == 'QC' || newData.val() == 'SK' || newData.val() == 'Y' || newData.val() == 'AB' || newData.val() == ' '"
                 }
             }
         }
